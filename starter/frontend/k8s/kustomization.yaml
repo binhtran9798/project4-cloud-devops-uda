@@ -6,5 +6,5 @@ resources:
 namespace: default
 images:
   - name: frontend
-    newName: 702664481076.dkr.ecr.us-east-1.amazonaws.com/frontend
+    newName: 545354473126.dkr.ecr.us-east-1.amazonaws.com/frontend
     newTag: latest
