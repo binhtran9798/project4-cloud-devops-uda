@@ -6,12 +6,12 @@ userarn=$(aws iam get-user --user-name github-action-user | jq -r .User.Arn)
 
 # Download tool for manipulating aws-auth
 echo "Downloading tool..."
-curl -Lo aws-iam-authenticator.exe https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.6.11/aws-iam-authenticator_0.6.11_windows_amd64.exe
-chmod +x aws-iam-authenticator.exe
+curl -X GET -L https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.6.2/aws-iam-authenticator_0.6.2_linux_amd64 -o aws-iam-authenticator
+chmod +x aws-iam-authenticator
 
 echo "Updating permissions"
-./aws-iam-authenticator.exe add user --userarn="${userarn}" --username=github-action-role --groups=system:masters --kubeconfig="$HOME"/.kube/config --prompt=false
+./aws-iam-authenticator add user --userarn="${userarn}" --username=github-action-role --groups=system:masters --kubeconfig="$HOME"/.kube/config --prompt=false
 
 echo "Cleaning up"
-rm aws-iam-authenticator.exe
+rm aws-iam-authenticator
 echo "Done!"
